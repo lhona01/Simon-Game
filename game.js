@@ -1,6 +1,12 @@
 var level = 1;
 var gameOver = true;
 var colors = ["green", "red", "yellow", "blue"];
+var audioPath = {
+    "green": "./sounds/green.mp3",
+    "red": "./sounds/red.mp3",
+    "yellow": "./sounds/yellow.mp3" ,
+    "blue": "./sounds/blue.mp3"
+};
 var sequence = [];
 var currSeq = 0;
 
@@ -13,21 +19,11 @@ function main() {
                 getRandomColor();
             }
         })
-    
-        $("#green").click(function () {
-            onColorClicked("green", "./sounds/green.mp3");
-        })
-        
-        $("#red").click(function () {
-            onColorClicked("red", "./sounds/red.mp3");
-        })
-        
-        $("#yellow").click(function () {
-            onColorClicked("yellow", "./sounds/yellow.mp3");
-        })
-        
-        $("#blue").click(function () {
-            onColorClicked("blue", "./sounds/blue.mp3");
+
+        $("button").click(function (event) {
+            var buttonId = event.target.id;
+            if (buttonId)
+                onColorClicked(buttonId, audioPath[buttonId]);
         })
     });
 }
